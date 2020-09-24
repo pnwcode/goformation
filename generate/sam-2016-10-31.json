@@ -268,6 +268,94 @@
                 }
             }
         },
+        "AWS::Serverless::HttpApi": {
+            "Documentation": "https://github.com/aws/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+            "Properties": {
+                "AccessLogSettings": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+                    "Required": false,
+                    "Type": "AccessLogSettings",
+                    "UpdateType": "Immutable"
+                },
+                "Auth": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+                    "Required": false,
+                    "Type": "Auth",
+                    "UpdateType": "Immutable"
+                },
+                "CorsConfiguration": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+                    "Required": false,
+                    "PrimitiveTypes": [
+                        "String"
+                    ],
+                    "Types": [
+                        "Cors"
+                    ],
+                    "UpdateType": "Immutable"
+                },
+                "DefaultRouteSettings": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+                    "Required": false,
+                    "PrimitiveType": "Json",
+                    "UpdateType": "Immutable"
+                },
+                "DefinitionBody": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+                    "Required": false,
+                    "PrimitiveType": "Json",
+                    "UpdateType": "Immutable"
+                },
+                "DefinitionUri": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+                    "Required": false,
+                    "PrimitiveTypes": [
+                        "String"
+                    ],
+                    "Types": [
+                        "HttpApiDefinition"
+                    ],
+                    "UpdateType": "Immutable"
+                },
+                "Domain": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+                    "Required": false,
+                    "Type": "DomainConfiguration",
+                    "UpdateType": "Immutable"
+                },
+                "FailOnWarnings": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+                    "Required": false,
+                    "PrimitiveType": "Boolean",
+                    "UpdateType": "Immutable"
+                },
+                "RouteSettings": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+                    "Required": false,
+                    "PrimitiveType": "Json",
+                    "UpdateType": "Immutable"
+                },
+                "StageName": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+                    "Required": false,
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "StageVariables": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+                    "Required": false,
+                    "PrimitiveType": "Json",
+                    "UpdateType": "Immutable"
+                },
+                "Tags": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesshttpapi",
+                    "Required": false,
+                    "Type": "Map",
+                    "PrimitiveItemType": "String",
+                    "UpdateType": "Immutable"
+                }
+            }
+        },
         "AWS::Serverless::Application": {
             "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessapplication",
             "Properties": {
@@ -476,6 +564,204 @@
         }
     },
     "PropertyTypes": {
+        "AWS::Serverless::HttpApi.AccessLogSettings": {
+            "Documentation": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-stage-accesslogsettings.html",
+            "Properties": {
+                "Format": {
+                    "Required": false,
+                    "Documentation": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-stage-accesslogsettings.html#cfn-apigatewayv2-stage-accesslogsettings-format",
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "DestinationArn": {
+                    "Required": false,
+                    "Documentation": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-stage-accesslogsettings.html#cfn-apigatewayv2-stage-accesslogsettings-destinationarn",
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                }
+            }
+        },
+        "AWS::Serverless::HttpApi.Auth": {
+            "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapiauth.html",
+            "Properties": {
+                "Authorizers": {
+                    "Required": false,
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapiauth.html",
+                    "Type": "OAuth2Authorizer",
+                    "UpdateType": "Immutable"
+                },
+                "DefaultAuthorizer": {
+                    "Required": false,
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapiauth.html",
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                }
+            }
+        },
+        "AWS::Serverless::HttpApi.OAuth2Authorizer": {
+            "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-oauth2authorizer.html",
+            "Properties": {
+                "AuthorizationScopes": {
+                    "Required": false,
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-oauth2authorizer.html",
+                    "Type": "List",
+                    "PrimitiveItemType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "IdentitySource": {
+                    "Required": false,
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-oauth2authorizer.html",
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "JwtConfiguration": {
+                    "Required": false,
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-oauth2authorizer.html",
+                    "Type": "Map",
+                    "PrimitiveItemType": "String",
+                    "UpdateType": "Immutable"
+                }
+            }
+        },
+        "AWS::Serverless::HttpApi.Cors": {
+            "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapicorsconfiguration.html",
+            "Properties": {
+                "AllowCredentials": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapicorsconfiguration.html",
+                    "Required": false,
+                    "PrimitiveType": "Boolean",
+                    "UpdateType": "Immutable"
+                },
+                "AllowHeaders": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapicorsconfiguration.html",
+                    "Required": false,
+                    "PrimitiveItemType": "String",
+                    "Type": "List",
+                    "UpdateType": "Immutable"
+                },
+                "AllowMethods": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapicorsconfiguration.html",
+                    "Required": false,
+                    "PrimitiveItemType": "String",
+                    "Type": "List",
+                    "UpdateType": "Immutable"
+                },
+                "AllowOrigins": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapicorsconfiguration.html",
+                    "Required": false,
+                    "PrimitiveItemType": "String",
+                    "Type": "List",
+                    "UpdateType": "Immutable"
+                },
+                "ExposeHeaders": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapicorsconfiguration.html",
+                    "Required": false,
+                    "PrimitiveItemType": "String",
+                    "Type": "List",
+                    "UpdateType": "Immutable"
+                },
+                "MaxAge": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapicorsconfiguration.html",
+                    "Required": false,
+                    "PrimitiveType": "Integer",
+                    "UpdateType": "Immutable"
+                }
+            }
+        },
+        "AWS::Serverless::HttpApi.HttpApiDefinition": {
+            "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapidefinition.html",
+            "Properties": {
+                "Bucket": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapidefinition.html",
+                    "Required": false,
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "Key": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapidefinition.html",
+                    "Required": false,
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "Version": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapidefinition.html",
+                    "Required": false,
+                    "PrimitiveType": "Integer",
+                    "UpdateType": "Immutable"
+                }
+            }
+        },
+        "AWS::Serverless::HttpApi.DomainConfiguration": {
+            "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapidomainconfiguration.html",
+            "Properties": {
+                "BasePath": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapidomainconfiguration.html",
+                    "Required": false,
+                    "Type": "List",
+                    "PrimitiveItemType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "CertificateArn": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapidomainconfiguration.html",
+                    "Required": true,
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "DomainName": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapidomainconfiguration.html",
+                    "Required": true,
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "EndpointConfiguration": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapidomainconfiguration.html",
+                    "Required": false,
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "Route53": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-httpapidomainconfiguration.html",
+                    "Required": false,
+                    "Type": "Route53Configuration",
+                    "UpdateType": "Immutable"
+                }
+            }
+        },
+        "AWS::Serverless::HttpApi.Route53Configuration": {
+            "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-route53configuration.html",
+            "Properties": {
+                "DistributionDomainName": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-route53configuration.html",
+                    "Required": false,
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "EvaluateTargetHealth": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-route53configuration.html",
+                    "Required": false,
+                    "PrimitiveType": "Boolean",
+                    "UpdateType": "Immutable"
+                },
+                "HostedZoneId": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-route53configuration.html",
+                    "Required": false,
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "HostedZoneName": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-route53configuration.html",
+                    "Required": false,
+                    "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                },
+                "IpV6": {
+                    "Documentation": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-httpapi-route53configuration.html",
+                    "Required": false,
+                    "PrimitiveType": "Boolean",
+                    "UpdateType": "Immutable"
+                }
+            }
+        },
         "AWS::Serverless::Application.ApplicationLocation": {
             "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessapplication",
             "Properties": {

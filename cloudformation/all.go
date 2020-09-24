@@ -654,6 +654,7 @@ func AllResources() map[string]Resource {
 		"AWS::Serverless::Api":                                        &serverless.Api{},
 		"AWS::Serverless::Application":                                &serverless.Application{},
 		"AWS::Serverless::Function":                                   &serverless.Function{},
+		"AWS::Serverless::HttpApi":                                    &serverless.HttpApi{},
 		"AWS::Serverless::LayerVersion":                               &serverless.LayerVersion{},
 		"AWS::Serverless::SimpleTable":                                &serverless.SimpleTable{},
 		"AWS::Serverless::StateMachine":                               &serverless.StateMachine{},
@@ -13235,6 +13236,30 @@ func (t *Template) GetServerlessFunctionWithName(name string) (*serverless.Funct
 		}
 	}
 	return nil, fmt.Errorf("resource %q of type serverless.Function not found", name)
+}
+
+// GetAllServerlessHttpApiResources retrieves all serverless.HttpApi items from an AWS CloudFormation template
+func (t *Template) GetAllServerlessHttpApiResources() map[string]*serverless.HttpApi {
+	results := map[string]*serverless.HttpApi{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *serverless.HttpApi:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetServerlessHttpApiWithName retrieves all serverless.HttpApi items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetServerlessHttpApiWithName(name string) (*serverless.HttpApi, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *serverless.HttpApi:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type serverless.HttpApi not found", name)
 }
 
 // GetAllServerlessLayerVersionResources retrieves all serverless.LayerVersion items from an AWS CloudFormation template

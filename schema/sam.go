@@ -73025,6 +73025,269 @@ var SamSchema = `{
             ],
             "type": "object"
         },
+        "AWS::Serverless::HttpApi": {
+            "additionalProperties": false,
+            "properties": {
+                "DeletionPolicy": {
+                    "enum": [
+                        "Delete",
+                        "Retain",
+                        "Snapshot"
+                    ],
+                    "type": "string"
+                },
+                "DependsOn": {
+                    "anyOf": [
+                        {
+                            "pattern": "^[a-zA-Z0-9]+$",
+                            "type": "string"
+                        },
+                        {
+                            "items": {
+                                "pattern": "^[a-zA-Z0-9]+$",
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
+                    ]
+                },
+                "Metadata": {
+                    "type": "object"
+                },
+                "Properties": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "AccessLogSettings": {
+                            "$ref": "#/definitions/AWS::Serverless::HttpApi.AccessLogSettings"
+                        },
+                        "Auth": {
+                            "$ref": "#/definitions/AWS::Serverless::HttpApi.Auth"
+                        },
+                        "CorsConfiguration": {
+                            "anyOf": [
+                                {
+                                    "type": [
+                                        "string"
+                                    ]
+                                },
+                                {
+                                    "$ref": "#/definitions/AWS::Serverless::HttpApi.Cors"
+                                }
+                            ]
+                        },
+                        "DefaultRouteSettings": {
+                            "type": "object"
+                        },
+                        "DefinitionBody": {
+                            "type": "object"
+                        },
+                        "DefinitionUri": {
+                            "anyOf": [
+                                {
+                                    "type": [
+                                        "string"
+                                    ]
+                                },
+                                {
+                                    "$ref": "#/definitions/AWS::Serverless::HttpApi.HttpApiDefinition"
+                                }
+                            ]
+                        },
+                        "Domain": {
+                            "$ref": "#/definitions/AWS::Serverless::HttpApi.DomainConfiguration"
+                        },
+                        "FailOnWarnings": {
+                            "type": "boolean"
+                        },
+                        "RouteSettings": {
+                            "type": "object"
+                        },
+                        "StageName": {
+                            "type": "string"
+                        },
+                        "StageVariables": {
+                            "type": "object"
+                        },
+                        "Tags": {
+                            "additionalProperties": true,
+                            "patternProperties": {
+                                "^[a-zA-Z0-9]+$": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "Type": {
+                    "enum": [
+                        "AWS::Serverless::HttpApi"
+                    ],
+                    "type": "string"
+                },
+                "UpdateReplacePolicy": {
+                    "enum": [
+                        "Delete",
+                        "Retain",
+                        "Snapshot"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Type"
+            ],
+            "type": "object"
+        },
+        "AWS::Serverless::HttpApi.AccessLogSettings": {
+            "additionalProperties": false,
+            "properties": {
+                "DestinationArn": {
+                    "type": "string"
+                },
+                "Format": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "AWS::Serverless::HttpApi.Auth": {
+            "additionalProperties": false,
+            "properties": {
+                "Authorizers": {
+                    "$ref": "#/definitions/AWS::Serverless::HttpApi.OAuth2Authorizer"
+                },
+                "DefaultAuthorizer": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "AWS::Serverless::HttpApi.Cors": {
+            "additionalProperties": false,
+            "properties": {
+                "AllowCredentials": {
+                    "type": "boolean"
+                },
+                "AllowHeaders": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "AllowMethods": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "AllowOrigins": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "ExposeHeaders": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "MaxAge": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "AWS::Serverless::HttpApi.DomainConfiguration": {
+            "additionalProperties": false,
+            "properties": {
+                "BasePath": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "CertificateArn": {
+                    "type": "string"
+                },
+                "DomainName": {
+                    "type": "string"
+                },
+                "EndpointConfiguration": {
+                    "type": "string"
+                },
+                "Route53": {
+                    "$ref": "#/definitions/AWS::Serverless::HttpApi.Route53Configuration"
+                }
+            },
+            "required": [
+                "CertificateArn",
+                "DomainName"
+            ],
+            "type": "object"
+        },
+        "AWS::Serverless::HttpApi.HttpApiDefinition": {
+            "additionalProperties": false,
+            "properties": {
+                "Bucket": {
+                    "type": "string"
+                },
+                "Key": {
+                    "type": "string"
+                },
+                "Version": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "AWS::Serverless::HttpApi.OAuth2Authorizer": {
+            "additionalProperties": false,
+            "properties": {
+                "AuthorizationScopes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "IdentitySource": {
+                    "type": "string"
+                },
+                "JwtConfiguration": {
+                    "additionalProperties": true,
+                    "patternProperties": {
+                        "^[a-zA-Z0-9]+$": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "AWS::Serverless::HttpApi.Route53Configuration": {
+            "additionalProperties": false,
+            "properties": {
+                "DistributionDomainName": {
+                    "type": "string"
+                },
+                "EvaluateTargetHealth": {
+                    "type": "boolean"
+                },
+                "HostedZoneId": {
+                    "type": "string"
+                },
+                "HostedZoneName": {
+                    "type": "string"
+                },
+                "IpV6": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
         "AWS::Serverless::LayerVersion": {
             "additionalProperties": false,
             "properties": {
@@ -81092,6 +81355,9 @@ var SamSchema = `{
                         },
                         {
                             "$ref": "#/definitions/AWS::Serverless::Function"
+                        },
+                        {
+                            "$ref": "#/definitions/AWS::Serverless::HttpApi"
                         },
                         {
                             "$ref": "#/definitions/AWS::Serverless::LayerVersion"
