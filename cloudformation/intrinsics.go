@@ -189,7 +189,7 @@ func Join(delimiter interface{}, values []string) string {
 
 // Select returns a single object from a list of objects by index.
 func Select(index, list interface{}) string {
-	return encode(fmt.Sprintf(`{ "Fn::Select": [ "%v", %v ] }`, index, toJSON(list)))
+	return encode(fmt.Sprintf(`{ "Fn::Select": [ %v, %v ] }`, toJSON(index), toJSON(list)))
 }
 
 // ([]str) -> str
