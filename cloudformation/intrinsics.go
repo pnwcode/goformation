@@ -2,6 +2,7 @@ package cloudformation
 
 import (
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -111,7 +112,7 @@ var EncoderIntrinsics = map[string]intrinsics.IntrinsicHandler{
 	"Fn::GetAZs":      strWrap(GetAZs),
 	"Fn::ImportValue": strWrap(ImportValue),
 	"Fn::Join":        str2AWrap(Join),
-	"Fn::Select":      str2AWrap(Select),
+	"Fn::Select":      str2Wrap(Select),
 	"Fn::Split":       str2Wrap(Split),
 	"Fn::Sub":         strWrap(Sub),
 	"Ref":             strWrap(Ref),
@@ -142,7 +143,7 @@ func GetAZs(region interface{}) string {
 
 // Sub substitutes variables in an input string with values that you specify. In your templates, you can use this function to construct commands or outputs that include values that aren't available until you create or update a stack.
 func Sub(value interface{}) string {
-	return encode(fmt.Sprintf(`{ "Fn::Sub" : %q }`, value))
+	return encode(fmt.Sprintf(`{ "Fn::Sub" : %v }`, toJSON(value)))
 }
 
 // (str, str) -> str
@@ -154,7 +155,7 @@ func GetAtt(logicalName string, attribute string) string {
 
 // Split splits a string into a list of string values so that you can select an element from the resulting string list, use the Fn::Split intrinsic function. Specify the location of splits with a delimiter, such as , (a comma). After you split a string, use the Fn::Select function to pick a specific element.
 func Split(delimiter, source interface{}) string {
-	return encode(fmt.Sprintf(`{ "Fn::Split" : [ %q, %q ] }`, delimiter, source))
+	return encode(fmt.Sprintf(`{ "Fn::Split" : [ %q, %v ] }`, delimiter, toJSON(source)))
 }
 
 // Equals compares if two values are equal. Returns true if the two values are equal or false if they aren't.
@@ -187,11 +188,8 @@ func Join(delimiter interface{}, values []string) string {
 }
 
 // Select returns a single object from a list of objects by index.
-func Select(index interface{}, list []string) string {
-	if len(list) == 1 {
-		return encode(fmt.Sprintf(`{ "Fn::Select": [ %q,  %q ] }`, index, list[0]))
-	}
-	return encode(fmt.Sprintf(`{ "Fn::Select": [ %q, [ %v ] ] }`, index, printList(list)))
+func Select(index, list interface{}) string {
+	return encode(fmt.Sprintf(`{ "Fn::Select": [ %v, %v ] }`, toJSON(index), toJSON(list)))
 }
 
 // ([]str) -> str
@@ -231,4 +229,12 @@ func interfaceAtostrA(values []interface{}) []string {
 		converted[i] = fmt.Sprintf("%v", values[i])
 	}
 	return converted
+}
+
+func toJSON(value interface{}) string {
+	j, err := json.Marshal(value)
+	if err != nil {
+		panic(err)
+	}
+	return string(j)
 }

@@ -17,6 +17,9 @@ type CustomResource struct {
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html#cfn-customresource-servicetoken
 	ServiceToken string `json:"ServiceToken,omitempty"`
 
+	// Properties added by pnwcode to support custom resource properties
+	Properties map[string]interface{} `json:"Properties,omitempty"`
+
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
 
