@@ -8,10 +8,10 @@ import (
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-networkconfiguration.html
 type Service_NetworkConfiguration struct {
 
-	// AwsvpcConfiguration AWS CloudFormation Property
+	// AwsVpcConfiguration AWS CloudFormation Property
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-networkconfiguration.html#cfn-ecs-service-networkconfiguration-awsvpcconfiguration
-	AwsvpcConfiguration *Service_AwsVpcConfiguration `json:"AwsvpcConfiguration,omitempty"`
+	AwsVpcConfiguration *Service_AwsVpcConfiguration `json:"AwsVpcConfiguration,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`

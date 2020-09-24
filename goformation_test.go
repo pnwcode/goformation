@@ -417,6 +417,7 @@ var _ = Describe("Goformation", func() {
 		for _, filename := range inputs {
 			Context("including "+filename, func() {
 				template, err := goformation.Open(filename)
+				fmt.Printf("file: %s err: %v\n", filename, err)
 				It("should successfully parse the SAM template", func() {
 					Expect(err).To(BeNil())
 					Expect(template).ShouldNot(BeNil())
