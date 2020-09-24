@@ -31,7 +31,7 @@ type Key struct {
 	// KeyPolicy AWS CloudFormation Property
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-keypolicy
-	KeyPolicy interface{} `json:"KeyPolicy,omitempty"`
+	KeyPolicy string `json:"KeyPolicy,omitempty"`
 
 	// KeyUsage AWS CloudFormation Property
 	// Required: false
