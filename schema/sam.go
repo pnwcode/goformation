@@ -14190,6 +14190,9 @@ var SamSchema = `{
                 "Properties": {
                     "additionalProperties": false,
                     "properties": {
+                        "Properties": {
+                            "type": "object"
+                        },
                         "ServiceToken": {
                             "type": "string"
                         }
@@ -65881,10 +65884,7 @@ var SamSchema = `{
                             "type": "string"
                         },
                         "ResourceRecords": {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
+                            "type": "object"
                         },
                         "SetIdentifier": {
                             "type": "string"
