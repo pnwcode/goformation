@@ -44239,7 +44239,7 @@
           "Documentation": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-keypolicy",
           "UpdateType": "Mutable",
           "Required": true,
-          "PrimitiveType": "String"
+          "PrimitiveType": "Json"
         },
         "KeyUsage": {
           "Documentation": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-keyusage",

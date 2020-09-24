@@ -48879,7 +48879,7 @@ var CloudformationSchema = `{
                             "type": "boolean"
                         },
                         "KeyPolicy": {
-                            "type": "string"
+                            "type": "object"
                         },
                         "KeyUsage": {
                             "type": "string"
