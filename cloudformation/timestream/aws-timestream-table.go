@@ -1,4 +1,4 @@
-package kendra
+package timestream
 
 import (
 	"bytes"
@@ -6,46 +6,32 @@ import (
 	"fmt"
 
 	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v4/cloudformation/tags"
 )
 
-// Faq AWS CloudFormation Resource (AWS::Kendra::Faq)
-// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html
-type Faq struct {
+// Table AWS CloudFormation Resource (AWS::Timestream::Table)
+// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-table.html
+type Table struct {
 
-	// Description AWS CloudFormation Property
+	// DatabaseName AWS CloudFormation Property
+	// Required: true
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-table.html#cfn-timestream-table-databasename
+	DatabaseName string `json:"DatabaseName,omitempty"`
+
+	// RetentionProperties AWS CloudFormation Property
 	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-description
-	Description string `json:"Description,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-table.html#cfn-timestream-table-retentionproperties
+	RetentionProperties interface{} `json:"RetentionProperties,omitempty"`
 
-	// FileFormat AWS CloudFormation Property
+	// TableName AWS CloudFormation Property
 	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-fileformat
-	FileFormat string `json:"FileFormat,omitempty"`
-
-	// IndexId AWS CloudFormation Property
-	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-indexid
-	IndexId string `json:"IndexId,omitempty"`
-
-	// Name AWS CloudFormation Property
-	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-name
-	Name string `json:"Name,omitempty"`
-
-	// RoleArn AWS CloudFormation Property
-	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-rolearn
-	RoleArn string `json:"RoleArn,omitempty"`
-
-	// S3Path AWS CloudFormation Property
-	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-s3path
-	S3Path *Faq_S3Path `json:"S3Path,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-table.html#cfn-timestream-table-tablename
+	TableName string `json:"TableName,omitempty"`
 
 	// Tags AWS CloudFormation Property
 	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-tags
-	Tags *Faq_TagList `json:"Tags,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-table.html#cfn-timestream-table-tags
+	Tags []tags.Tag `json:"Tags,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
@@ -64,14 +50,14 @@ type Faq struct {
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
-func (r *Faq) AWSCloudFormationType() string {
-	return "AWS::Kendra::Faq"
+func (r *Table) AWSCloudFormationType() string {
+	return "AWS::Timestream::Table"
 }
 
 // MarshalJSON is a custom JSON marshalling hook that embeds this object into
 // an AWS CloudFormation JSON resource's 'Properties' field and adds a 'Type'.
-func (r Faq) MarshalJSON() ([]byte, error) {
-	type Properties Faq
+func (r Table) MarshalJSON() ([]byte, error) {
+	type Properties Table
 	return json.Marshal(&struct {
 		Type                string
 		Properties          Properties
@@ -93,8 +79,8 @@ func (r Faq) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON is a custom JSON unmarshalling hook that strips the outer
 // AWS CloudFormation resource object, and just keeps the 'Properties' field.
-func (r *Faq) UnmarshalJSON(b []byte) error {
-	type Properties Faq
+func (r *Table) UnmarshalJSON(b []byte) error {
+	type Properties Table
 	res := &struct {
 		Type                string
 		Properties          *Properties
@@ -115,7 +101,7 @@ func (r *Faq) UnmarshalJSON(b []byte) error {
 
 	// If the resource has no Properties set, it could be nil
 	if res.Properties != nil {
-		*r = Faq(*res.Properties)
+		*r = Table(*res.Properties)
 	}
 	if res.DependsOn != nil {
 		r.AWSCloudFormationDependsOn = res.DependsOn

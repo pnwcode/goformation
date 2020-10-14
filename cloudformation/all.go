@@ -31,6 +31,7 @@ import (
 	"github.com/awslabs/goformation/v4/cloudformation/cloudfront"
 	"github.com/awslabs/goformation/v4/cloudformation/cloudtrail"
 	"github.com/awslabs/goformation/v4/cloudformation/cloudwatch"
+	"github.com/awslabs/goformation/v4/cloudformation/codeartifact"
 	"github.com/awslabs/goformation/v4/cloudformation/codebuild"
 	"github.com/awslabs/goformation/v4/cloudformation/codecommit"
 	"github.com/awslabs/goformation/v4/cloudformation/codedeploy"
@@ -122,6 +123,7 @@ import (
 	"github.com/awslabs/goformation/v4/cloudformation/sso"
 	"github.com/awslabs/goformation/v4/cloudformation/stepfunctions"
 	"github.com/awslabs/goformation/v4/cloudformation/synthetics"
+	"github.com/awslabs/goformation/v4/cloudformation/timestream"
 	"github.com/awslabs/goformation/v4/cloudformation/transfer"
 	"github.com/awslabs/goformation/v4/cloudformation/waf"
 	"github.com/awslabs/goformation/v4/cloudformation/wafregional"
@@ -246,6 +248,8 @@ func AllResources() map[string]Resource {
 		"AWS::CloudWatch::CompositeAlarm":                             &cloudwatch.CompositeAlarm{},
 		"AWS::CloudWatch::Dashboard":                                  &cloudwatch.Dashboard{},
 		"AWS::CloudWatch::InsightRule":                                &cloudwatch.InsightRule{},
+		"AWS::CodeArtifact::Domain":                                   &codeartifact.Domain{},
+		"AWS::CodeArtifact::Repository":                               &codeartifact.Repository{},
 		"AWS::CodeBuild::Project":                                     &codebuild.Project{},
 		"AWS::CodeBuild::ReportGroup":                                 &codebuild.ReportGroup{},
 		"AWS::CodeBuild::SourceCredential":                            &codebuild.SourceCredential{},
@@ -680,6 +684,8 @@ func AllResources() map[string]Resource {
 		"AWS::StepFunctions::Activity":                                &stepfunctions.Activity{},
 		"AWS::StepFunctions::StateMachine":                            &stepfunctions.StateMachine{},
 		"AWS::Synthetics::Canary":                                     &synthetics.Canary{},
+		"AWS::Timestream::Database":                                   &timestream.Database{},
+		"AWS::Timestream::Table":                                      &timestream.Table{},
 		"AWS::Transfer::Server":                                       &transfer.Server{},
 		"AWS::Transfer::User":                                         &transfer.User{},
 		"AWS::WAF::ByteMatchSet":                                      &waf.ByteMatchSet{},
@@ -705,6 +711,7 @@ func AllResources() map[string]Resource {
 		"AWS::WAFv2::RuleGroup":                                       &wafv2.RuleGroup{},
 		"AWS::WAFv2::WebACL":                                          &wafv2.WebACL{},
 		"AWS::WAFv2::WebACLAssociation":                               &wafv2.WebACLAssociation{},
+		"AWS::WorkSpaces::ConnectionAlias":                            &workspaces.ConnectionAlias{},
 		"AWS::WorkSpaces::Workspace":                                  &workspaces.Workspace{},
 		"Alexa::ASK::Skill":                                           &ask.Skill{},
 	}
@@ -3444,6 +3451,54 @@ func (t *Template) GetCloudWatchInsightRuleWithName(name string) (*cloudwatch.In
 		}
 	}
 	return nil, fmt.Errorf("resource %q of type cloudwatch.InsightRule not found", name)
+}
+
+// GetAllCodeArtifactDomainResources retrieves all codeartifact.Domain items from an AWS CloudFormation template
+func (t *Template) GetAllCodeArtifactDomainResources() map[string]*codeartifact.Domain {
+	results := map[string]*codeartifact.Domain{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *codeartifact.Domain:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetCodeArtifactDomainWithName retrieves all codeartifact.Domain items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetCodeArtifactDomainWithName(name string) (*codeartifact.Domain, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *codeartifact.Domain:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type codeartifact.Domain not found", name)
+}
+
+// GetAllCodeArtifactRepositoryResources retrieves all codeartifact.Repository items from an AWS CloudFormation template
+func (t *Template) GetAllCodeArtifactRepositoryResources() map[string]*codeartifact.Repository {
+	results := map[string]*codeartifact.Repository{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *codeartifact.Repository:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetCodeArtifactRepositoryWithName retrieves all codeartifact.Repository items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetCodeArtifactRepositoryWithName(name string) (*codeartifact.Repository, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *codeartifact.Repository:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type codeartifact.Repository not found", name)
 }
 
 // GetAllCodeBuildProjectResources retrieves all codebuild.Project items from an AWS CloudFormation template
@@ -13862,6 +13917,54 @@ func (t *Template) GetSyntheticsCanaryWithName(name string) (*synthetics.Canary,
 	return nil, fmt.Errorf("resource %q of type synthetics.Canary not found", name)
 }
 
+// GetAllTimestreamDatabaseResources retrieves all timestream.Database items from an AWS CloudFormation template
+func (t *Template) GetAllTimestreamDatabaseResources() map[string]*timestream.Database {
+	results := map[string]*timestream.Database{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *timestream.Database:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetTimestreamDatabaseWithName retrieves all timestream.Database items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetTimestreamDatabaseWithName(name string) (*timestream.Database, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *timestream.Database:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type timestream.Database not found", name)
+}
+
+// GetAllTimestreamTableResources retrieves all timestream.Table items from an AWS CloudFormation template
+func (t *Template) GetAllTimestreamTableResources() map[string]*timestream.Table {
+	results := map[string]*timestream.Table{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *timestream.Table:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetTimestreamTableWithName retrieves all timestream.Table items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetTimestreamTableWithName(name string) (*timestream.Table, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *timestream.Table:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type timestream.Table not found", name)
+}
+
 // GetAllTransferServerResources retrieves all transfer.Server items from an AWS CloudFormation template
 func (t *Template) GetAllTransferServerResources() map[string]*transfer.Server {
 	results := map[string]*transfer.Server{}
@@ -14460,6 +14563,30 @@ func (t *Template) GetWAFv2WebACLAssociationWithName(name string) (*wafv2.WebACL
 		}
 	}
 	return nil, fmt.Errorf("resource %q of type wafv2.WebACLAssociation not found", name)
+}
+
+// GetAllWorkSpacesConnectionAliasResources retrieves all workspaces.ConnectionAlias items from an AWS CloudFormation template
+func (t *Template) GetAllWorkSpacesConnectionAliasResources() map[string]*workspaces.ConnectionAlias {
+	results := map[string]*workspaces.ConnectionAlias{}
+	for name, untyped := range t.Resources {
+		switch resource := untyped.(type) {
+		case *workspaces.ConnectionAlias:
+			results[name] = resource
+		}
+	}
+	return results
+}
+
+// GetWorkSpacesConnectionAliasWithName retrieves all workspaces.ConnectionAlias items from an AWS CloudFormation template
+// whose logical ID matches the provided name. Returns an error if not found.
+func (t *Template) GetWorkSpacesConnectionAliasWithName(name string) (*workspaces.ConnectionAlias, error) {
+	if untyped, ok := t.Resources[name]; ok {
+		switch resource := untyped.(type) {
+		case *workspaces.ConnectionAlias:
+			return resource, nil
+		}
+	}
+	return nil, fmt.Errorf("resource %q of type workspaces.ConnectionAlias not found", name)
 }
 
 // GetAllWorkSpacesWorkspaceResources retrieves all workspaces.Workspace items from an AWS CloudFormation template

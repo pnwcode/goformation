@@ -14,14 +14,14 @@ type CachePolicy_CachePolicyConfig struct {
 	Comment string `json:"Comment,omitempty"`
 
 	// DefaultTTL AWS CloudFormation Property
-	// Required: false
+	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cachepolicyconfig.html#cfn-cloudfront-cachepolicy-cachepolicyconfig-defaultttl
-	DefaultTTL float64 `json:"DefaultTTL,omitempty"`
+	DefaultTTL float64 `json:"DefaultTTL"`
 
 	// MaxTTL AWS CloudFormation Property
-	// Required: false
+	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cachepolicyconfig.html#cfn-cloudfront-cachepolicy-cachepolicyconfig-maxttl
-	MaxTTL float64 `json:"MaxTTL,omitempty"`
+	MaxTTL float64 `json:"MaxTTL"`
 
 	// MinTTL AWS CloudFormation Property
 	// Required: true
@@ -34,7 +34,7 @@ type CachePolicy_CachePolicyConfig struct {
 	Name string `json:"Name,omitempty"`
 
 	// ParametersInCacheKeyAndForwardedToOrigin AWS CloudFormation Property
-	// Required: false
+	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cachepolicyconfig.html#cfn-cloudfront-cachepolicy-cachepolicyconfig-parametersincachekeyandforwardedtoorigin
 	ParametersInCacheKeyAndForwardedToOrigin *CachePolicy_ParametersInCacheKeyAndForwardedToOrigin `json:"ParametersInCacheKeyAndForwardedToOrigin,omitempty"`
 

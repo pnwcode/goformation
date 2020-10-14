@@ -1,17 +1,17 @@
-package ecs
+package eks
 
 import (
 	"github.com/awslabs/goformation/v4/cloudformation/policies"
 )
 
-// Service_NetworkConfiguration AWS CloudFormation Resource (AWS::ECS::Service.NetworkConfiguration)
-// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-networkconfiguration.html
-type Service_NetworkConfiguration struct {
+// Cluster_KubernetesNetworkConfig AWS CloudFormation Resource (AWS::EKS::Cluster.KubernetesNetworkConfig)
+// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-kubernetesnetworkconfig.html
+type Cluster_KubernetesNetworkConfig struct {
 
-	// AwsvpcConfiguration AWS CloudFormation Property
+	// ServiceIpv4Cidr AWS CloudFormation Property
 	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-networkconfiguration.html#cfn-ecs-service-networkconfiguration-awsvpcconfiguration
-	AwsvpcConfiguration *Service_AwsVpcConfiguration `json:"AwsvpcConfiguration,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-kubernetesnetworkconfig.html#cfn-eks-cluster-kubernetesnetworkconfig-serviceipv4cidr
+	ServiceIpv4Cidr string `json:"ServiceIpv4Cidr,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
@@ -30,6 +30,6 @@ type Service_NetworkConfiguration struct {
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
-func (r *Service_NetworkConfiguration) AWSCloudFormationType() string {
-	return "AWS::ECS::Service.NetworkConfiguration"
+func (r *Cluster_KubernetesNetworkConfig) AWSCloudFormationType() string {
+	return "AWS::EKS::Cluster.KubernetesNetworkConfig"
 }

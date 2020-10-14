@@ -83,6 +83,12 @@
                     ],
                     "UpdateType": "Immutable"
                 },
+                "ProvisionedConcurrencyConfig": {
+                    "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction",
+                    "Required": false,
+                    "Type": "ProvisionedConcurrencyConfig",
+                    "UpdateType": "Immutable"
+                },
                 "PermissionsBoundary": {
                     "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction",
                     "Required": false,
@@ -1177,6 +1183,17 @@
                     "Documentation": "https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#eventbridgerule",
                     "Required": false,
                     "PrimitiveType": "String",
+                    "UpdateType": "Immutable"
+                }
+            }
+        },
+        "AWS::Serverless::Function.ProvisionedConcurrencyConfig": {
+            "Documentation": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html",
+            "Properties": {
+                "ProvisionedConcurrentExecutions": {
+                    "Documentation": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html",
+                    "Required": true,
+                    "PrimitiveType": "Integer",
                     "UpdateType": "Immutable"
                 }
             }

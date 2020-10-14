@@ -1,4 +1,4 @@
-package kendra
+package workspaces
 
 import (
 	"bytes"
@@ -6,46 +6,22 @@ import (
 	"fmt"
 
 	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v4/cloudformation/tags"
 )
 
-// Faq AWS CloudFormation Resource (AWS::Kendra::Faq)
-// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html
-type Faq struct {
+// ConnectionAlias AWS CloudFormation Resource (AWS::WorkSpaces::ConnectionAlias)
+// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-connectionalias.html
+type ConnectionAlias struct {
 
-	// Description AWS CloudFormation Property
-	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-description
-	Description string `json:"Description,omitempty"`
-
-	// FileFormat AWS CloudFormation Property
-	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-fileformat
-	FileFormat string `json:"FileFormat,omitempty"`
-
-	// IndexId AWS CloudFormation Property
+	// ConnectionString AWS CloudFormation Property
 	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-indexid
-	IndexId string `json:"IndexId,omitempty"`
-
-	// Name AWS CloudFormation Property
-	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-name
-	Name string `json:"Name,omitempty"`
-
-	// RoleArn AWS CloudFormation Property
-	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-rolearn
-	RoleArn string `json:"RoleArn,omitempty"`
-
-	// S3Path AWS CloudFormation Property
-	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-s3path
-	S3Path *Faq_S3Path `json:"S3Path,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-connectionalias.html#cfn-workspaces-connectionalias-connectionstring
+	ConnectionString string `json:"ConnectionString,omitempty"`
 
 	// Tags AWS CloudFormation Property
 	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-faq.html#cfn-kendra-faq-tags
-	Tags *Faq_TagList `json:"Tags,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-connectionalias.html#cfn-workspaces-connectionalias-tags
+	Tags []tags.Tag `json:"Tags,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
@@ -64,14 +40,14 @@ type Faq struct {
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
-func (r *Faq) AWSCloudFormationType() string {
-	return "AWS::Kendra::Faq"
+func (r *ConnectionAlias) AWSCloudFormationType() string {
+	return "AWS::WorkSpaces::ConnectionAlias"
 }
 
 // MarshalJSON is a custom JSON marshalling hook that embeds this object into
 // an AWS CloudFormation JSON resource's 'Properties' field and adds a 'Type'.
-func (r Faq) MarshalJSON() ([]byte, error) {
-	type Properties Faq
+func (r ConnectionAlias) MarshalJSON() ([]byte, error) {
+	type Properties ConnectionAlias
 	return json.Marshal(&struct {
 		Type                string
 		Properties          Properties
@@ -93,8 +69,8 @@ func (r Faq) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON is a custom JSON unmarshalling hook that strips the outer
 // AWS CloudFormation resource object, and just keeps the 'Properties' field.
-func (r *Faq) UnmarshalJSON(b []byte) error {
-	type Properties Faq
+func (r *ConnectionAlias) UnmarshalJSON(b []byte) error {
+	type Properties ConnectionAlias
 	res := &struct {
 		Type                string
 		Properties          *Properties
@@ -115,7 +91,7 @@ func (r *Faq) UnmarshalJSON(b []byte) error {
 
 	// If the resource has no Properties set, it could be nil
 	if res.Properties != nil {
-		*r = Faq(*res.Properties)
+		*r = ConnectionAlias(*res.Properties)
 	}
 	if res.DependsOn != nil {
 		r.AWSCloudFormationDependsOn = res.DependsOn

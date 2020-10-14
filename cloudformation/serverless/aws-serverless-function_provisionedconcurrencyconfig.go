@@ -1,17 +1,17 @@
-package ecs
+package serverless
 
 import (
 	"github.com/awslabs/goformation/v4/cloudformation/policies"
 )
 
-// Service_NetworkConfiguration AWS CloudFormation Resource (AWS::ECS::Service.NetworkConfiguration)
-// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-networkconfiguration.html
-type Service_NetworkConfiguration struct {
+// Function_ProvisionedConcurrencyConfig AWS CloudFormation Resource (AWS::Serverless::Function.ProvisionedConcurrencyConfig)
+// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html
+type Function_ProvisionedConcurrencyConfig struct {
 
-	// AwsvpcConfiguration AWS CloudFormation Property
-	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-networkconfiguration.html#cfn-ecs-service-networkconfiguration-awsvpcconfiguration
-	AwsvpcConfiguration *Service_AwsVpcConfiguration `json:"AwsvpcConfiguration,omitempty"`
+	// ProvisionedConcurrentExecutions AWS CloudFormation Property
+	// Required: true
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html
+	ProvisionedConcurrentExecutions int `json:"ProvisionedConcurrentExecutions"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
@@ -30,6 +30,6 @@ type Service_NetworkConfiguration struct {
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
-func (r *Service_NetworkConfiguration) AWSCloudFormationType() string {
-	return "AWS::ECS::Service.NetworkConfiguration"
+func (r *Function_ProvisionedConcurrencyConfig) AWSCloudFormationType() string {
+	return "AWS::Serverless::Function.ProvisionedConcurrencyConfig"
 }
