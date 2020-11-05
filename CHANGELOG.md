@@ -1,5 +1,28 @@
 # GoFormation Versioning Changelog
 
+# [4.9.0](https://github.com/pnwcode/goformation/compare/v4.8.0...v4.9.0) (2020-11-05)
+
+
+### Bug Fixes
+
+* **generator:** update the generation making it easier to fix CF schema errors to generate ([#285](https://github.com/pnwcode/goformation/issues/285)) ([6751e5b](https://github.com/pnwcode/goformation/commit/6751e5b6ecbe1daee45171528cb1300efc6fb300))
+* **intrinsics:** Join function to allow to use parameters of type `List<>` ([#309](https://github.com/pnwcode/goformation/issues/309)) ([6cc1cd3](https://github.com/pnwcode/goformation/commit/6cc1cd329047227674caaf1b546066e3043c6616))
+* **schema:** Add Change and Update policies to the Unmarshal method ([#288](https://github.com/pnwcode/goformation/issues/288)) ([989b05f](https://github.com/pnwcode/goformation/commit/989b05fa78cb9e72f6d59298fb8bb287612f322e))
+* **schema:** CloudFormation Updates ([#320](https://github.com/pnwcode/goformation/issues/320)) ([49879b4](https://github.com/pnwcode/goformation/commit/49879b45f79dc9880071facd32d76cc4bf0570eb))
+* **schema:** CloudFormation Updates ([#329](https://github.com/pnwcode/goformation/issues/329)) ([4c1362b](https://github.com/pnwcode/goformation/commit/4c1362bac14a3d6fc2cebd56eddcaf440228a4e9))
+* **schema:** CloudFormation Updates ([#330](https://github.com/pnwcode/goformation/issues/330)) ([4070319](https://github.com/pnwcode/goformation/commit/40703191771425b3519128027478cf740d10f2d9))
+
+
+### Features
+
+* **schema:** Add new DynamoDBEvent options ([#289](https://github.com/pnwcode/goformation/issues/289)) ([741228d](https://github.com/pnwcode/goformation/commit/741228d6923ea10f1d22a901bbddf106d5c71cd7))
+* **schema:** Add OpenApiVersion field to serverless Api ([#281](https://github.com/pnwcode/goformation/issues/281)) ([bccc71b](https://github.com/pnwcode/goformation/commit/bccc71b90531fb6bba8465b578fc2accc4dc6e34))
+* **schema:** Add support for Template Outputs ([#291](https://github.com/pnwcode/goformation/issues/291)) ([6875c50](https://github.com/pnwcode/goformation/commit/6875c50d00d8e1af71d9bad5788446b29ab03513))
+* **schema:** adding AWS::Serverless::StateMachine and FileSystemConfigs to Function ([#284](https://github.com/pnwcode/goformation/issues/284)) ([d2d23ca](https://github.com/pnwcode/goformation/commit/d2d23cafba606a8ea40649cc666073fa0e2d5ad3))
+* **schema:** CFN Updates ([#287](https://github.com/pnwcode/goformation/issues/287)) ([9778479](https://github.com/pnwcode/goformation/commit/97784795e35035b71b946d0ca69ef4d380d3b4a8))
+* **schema:** dummy commit - trigger CI for schema update ([66bc344](https://github.com/pnwcode/goformation/commit/66bc344ed6a17a613abbb4d217afcc0b8ea02b48))
+* **schema:** Serverless eventbridgeruleevent ([#279](https://github.com/pnwcode/goformation/issues/279)) ([2a9e572](https://github.com/pnwcode/goformation/commit/2a9e572313485023dc4e57cb8facda72a3571307))
+
 ## [4.15.4](https://github.com/awslabs/goformation/compare/v4.15.3...v4.15.4) (2020-11-01)
 
 
