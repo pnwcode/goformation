@@ -11,6 +11,10 @@ import (
 // CustomResource AWS CloudFormation Resource (AWS::CloudFormation::CustomResource)
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html
 type CustomResource struct {
+	// Properties AWS CloudFormation Property
+	// Required: false
+	// See:
+	Properties interface{} `json:"Properties,omitempty"`
 
 	// ServiceToken AWS CloudFormation Property
 	// Required: true
