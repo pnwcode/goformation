@@ -1,17 +1,17 @@
-package mediapackage
+package iotsitewise
 
 import (
 	"github.com/awslabs/goformation/v4/cloudformation/policies"
 )
 
-// PackagingConfiguration_MssEncryption AWS CloudFormation Resource (AWS::MediaPackage::PackagingConfiguration.MssEncryption)
-// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-mssencryption.html
-type PackagingConfiguration_MssEncryption struct {
+// Gateway_GatewayPlatform AWS CloudFormation Resource (AWS::IoTSiteWise::Gateway.GatewayPlatform)
+// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-gatewayplatform.html
+type Gateway_GatewayPlatform struct {
 
-	// SpekeKeyProvider AWS CloudFormation Property
+	// Greengrass AWS CloudFormation Property
 	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-mssencryption.html#cfn-mediapackage-packagingconfiguration-mssencryption-spekekeyprovider
-	SpekeKeyProvider interface{} `json:"SpekeKeyProvider,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-gatewayplatform.html#cfn-iotsitewise-gateway-gatewayplatform-greengrass
+	Greengrass *Gateway_Greengrass `json:"Greengrass,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
@@ -30,6 +30,6 @@ type PackagingConfiguration_MssEncryption struct {
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
-func (r *PackagingConfiguration_MssEncryption) AWSCloudFormationType() string {
-	return "AWS::MediaPackage::PackagingConfiguration.MssEncryption"
+func (r *Gateway_GatewayPlatform) AWSCloudFormationType() string {
+	return "AWS::IoTSiteWise::Gateway.GatewayPlatform"
 }

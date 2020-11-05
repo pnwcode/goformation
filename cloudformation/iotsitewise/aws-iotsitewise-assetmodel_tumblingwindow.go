@@ -1,17 +1,17 @@
-package mediapackage
+package iotsitewise
 
 import (
 	"github.com/awslabs/goformation/v4/cloudformation/policies"
 )
 
-// PackagingConfiguration_MssEncryption AWS CloudFormation Resource (AWS::MediaPackage::PackagingConfiguration.MssEncryption)
-// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-mssencryption.html
-type PackagingConfiguration_MssEncryption struct {
+// AssetModel_TumblingWindow AWS CloudFormation Resource (AWS::IoTSiteWise::AssetModel.TumblingWindow)
+// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-tumblingwindow.html
+type AssetModel_TumblingWindow struct {
 
-	// SpekeKeyProvider AWS CloudFormation Property
+	// Interval AWS CloudFormation Property
 	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-mssencryption.html#cfn-mediapackage-packagingconfiguration-mssencryption-spekekeyprovider
-	SpekeKeyProvider interface{} `json:"SpekeKeyProvider,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-tumblingwindow.html#cfn-iotsitewise-assetmodel-tumblingwindow-interval
+	Interval string `json:"Interval,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
@@ -30,6 +30,6 @@ type PackagingConfiguration_MssEncryption struct {
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
-func (r *PackagingConfiguration_MssEncryption) AWSCloudFormationType() string {
-	return "AWS::MediaPackage::PackagingConfiguration.MssEncryption"
+func (r *AssetModel_TumblingWindow) AWSCloudFormationType() string {
+	return "AWS::IoTSiteWise::AssetModel.TumblingWindow"
 }

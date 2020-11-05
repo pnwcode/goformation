@@ -1,4 +1,4 @@
-package lakeformation
+package ivs
 
 import (
 	"bytes"
@@ -6,21 +6,37 @@ import (
 	"fmt"
 
 	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v4/cloudformation/tags"
 )
 
-// DataLakeSettings AWS CloudFormation Resource (AWS::LakeFormation::DataLakeSettings)
-// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-datalakesettings.html
-type DataLakeSettings struct {
+// Channel AWS CloudFormation Resource (AWS::IVS::Channel)
+// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html
+type Channel struct {
 
-	// Admins AWS CloudFormation Property
+	// Authorized AWS CloudFormation Property
 	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-datalakesettings.html#cfn-lakeformation-datalakesettings-admins
-	Admins *DataLakeSettings_Admins `json:"Admins,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html#cfn-ivs-channel-authorized
+	Authorized bool `json:"Authorized,omitempty"`
 
-	// TrustedResourceOwners AWS CloudFormation Property
+	// LatencyMode AWS CloudFormation Property
 	// Required: false
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-datalakesettings.html#cfn-lakeformation-datalakesettings-trustedresourceowners
-	TrustedResourceOwners []string `json:"TrustedResourceOwners,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html#cfn-ivs-channel-latencymode
+	LatencyMode string `json:"LatencyMode,omitempty"`
+
+	// Name AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html#cfn-ivs-channel-name
+	Name string `json:"Name,omitempty"`
+
+	// Tags AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html#cfn-ivs-channel-tags
+	Tags []tags.Tag `json:"Tags,omitempty"`
+
+	// Type AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html#cfn-ivs-channel-type
+	Type string `json:"Type,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
@@ -39,14 +55,14 @@ type DataLakeSettings struct {
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
-func (r *DataLakeSettings) AWSCloudFormationType() string {
-	return "AWS::LakeFormation::DataLakeSettings"
+func (r *Channel) AWSCloudFormationType() string {
+	return "AWS::IVS::Channel"
 }
 
 // MarshalJSON is a custom JSON marshalling hook that embeds this object into
 // an AWS CloudFormation JSON resource's 'Properties' field and adds a 'Type'.
-func (r DataLakeSettings) MarshalJSON() ([]byte, error) {
-	type Properties DataLakeSettings
+func (r Channel) MarshalJSON() ([]byte, error) {
+	type Properties Channel
 	return json.Marshal(&struct {
 		Type                string
 		Properties          Properties
@@ -68,8 +84,8 @@ func (r DataLakeSettings) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON is a custom JSON unmarshalling hook that strips the outer
 // AWS CloudFormation resource object, and just keeps the 'Properties' field.
-func (r *DataLakeSettings) UnmarshalJSON(b []byte) error {
-	type Properties DataLakeSettings
+func (r *Channel) UnmarshalJSON(b []byte) error {
+	type Properties Channel
 	res := &struct {
 		Type                string
 		Properties          *Properties
@@ -90,7 +106,7 @@ func (r *DataLakeSettings) UnmarshalJSON(b []byte) error {
 
 	// If the resource has no Properties set, it could be nil
 	if res.Properties != nil {
-		*r = DataLakeSettings(*res.Properties)
+		*r = Channel(*res.Properties)
 	}
 	if res.DependsOn != nil {
 		r.AWSCloudFormationDependsOn = res.DependsOn
