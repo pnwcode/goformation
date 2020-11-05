@@ -1,5 +1,33 @@
 # GoFormation Versioning Changelog
 
+## [4.15.4](https://github.com/awslabs/goformation/compare/v4.15.3...v4.15.4) (2020-11-01)
+
+
+### Bug Fixes
+
+* **schema:** CloudFormation Updates ([#330](https://github.com/awslabs/goformation/issues/330)) ([4070319](https://github.com/awslabs/goformation/commit/40703191771425b3519128027478cf740d10f2d9))
+
+## [4.15.3](https://github.com/awslabs/goformation/compare/v4.15.2...v4.15.3) (2020-10-23)
+
+
+### Bug Fixes
+
+* **schema:** CloudFormation Updates ([#329](https://github.com/awslabs/goformation/issues/329)) ([4c1362b](https://github.com/awslabs/goformation/commit/4c1362bac14a3d6fc2cebd56eddcaf440228a4e9))
+
+## [4.15.2](https://github.com/awslabs/goformation/compare/v4.15.1...v4.15.2) (2020-10-11)
+
+
+### Bug Fixes
+
+* **schema:** CloudFormation Updates ([#320](https://github.com/awslabs/goformation/issues/320)) ([49879b4](https://github.com/awslabs/goformation/commit/49879b45f79dc9880071facd32d76cc4bf0570eb))
+
+## [4.15.1](https://github.com/awslabs/goformation/compare/v4.15.0...v4.15.1) (2020-10-11)
+
+
+### Bug Fixes
+
+* **intrinsics:** Join function to allow to use parameters of type `List<>` ([#309](https://github.com/awslabs/goformation/issues/309)) ([6cc1cd3](https://github.com/awslabs/goformation/commit/6cc1cd329047227674caaf1b546066e3043c6616))
+
 # [4.15.0](https://github.com/awslabs/goformation/compare/v4.14.0...v4.15.0) (2020-08-16)
 
 

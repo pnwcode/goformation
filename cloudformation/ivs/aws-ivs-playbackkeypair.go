@@ -1,4 +1,4 @@
-package cloudformation
+package ivs
 
 import (
 	"bytes"
@@ -6,20 +6,27 @@ import (
 	"fmt"
 
 	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v4/cloudformation/tags"
 )
 
-// CustomResource AWS CloudFormation Resource (AWS::CloudFormation::CustomResource)
-// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html
-type CustomResource struct {
-	// Properties AWS CloudFormation Property
-	// Required: false
-	// See:
-	Properties interface{} `json:"Properties,omitempty"`
+// PlaybackKeyPair AWS CloudFormation Resource (AWS::IVS::PlaybackKeyPair)
+// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-playbackkeypair.html
+type PlaybackKeyPair struct {
 
-	// ServiceToken AWS CloudFormation Property
+	// Name AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-playbackkeypair.html#cfn-ivs-playbackkeypair-name
+	Name string `json:"Name,omitempty"`
+
+	// PublicKeyMaterial AWS CloudFormation Property
 	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html#cfn-customresource-servicetoken
-	ServiceToken string `json:"ServiceToken,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-playbackkeypair.html#cfn-ivs-playbackkeypair-publickeymaterial
+	PublicKeyMaterial string `json:"PublicKeyMaterial,omitempty"`
+
+	// Tags AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-playbackkeypair.html#cfn-ivs-playbackkeypair-tags
+	Tags []tags.Tag `json:"Tags,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
@@ -38,14 +45,14 @@ type CustomResource struct {
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
-func (r *CustomResource) AWSCloudFormationType() string {
-	return "AWS::CloudFormation::CustomResource"
+func (r *PlaybackKeyPair) AWSCloudFormationType() string {
+	return "AWS::IVS::PlaybackKeyPair"
 }
 
 // MarshalJSON is a custom JSON marshalling hook that embeds this object into
 // an AWS CloudFormation JSON resource's 'Properties' field and adds a 'Type'.
-func (r CustomResource) MarshalJSON() ([]byte, error) {
-	type Properties CustomResource
+func (r PlaybackKeyPair) MarshalJSON() ([]byte, error) {
+	type Properties PlaybackKeyPair
 	return json.Marshal(&struct {
 		Type                string
 		Properties          Properties
@@ -67,8 +74,8 @@ func (r CustomResource) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON is a custom JSON unmarshalling hook that strips the outer
 // AWS CloudFormation resource object, and just keeps the 'Properties' field.
-func (r *CustomResource) UnmarshalJSON(b []byte) error {
-	type Properties CustomResource
+func (r *PlaybackKeyPair) UnmarshalJSON(b []byte) error {
+	type Properties PlaybackKeyPair
 	res := &struct {
 		Type                string
 		Properties          *Properties
@@ -89,7 +96,7 @@ func (r *CustomResource) UnmarshalJSON(b []byte) error {
 
 	// If the resource has no Properties set, it could be nil
 	if res.Properties != nil {
-		*r = CustomResource(*res.Properties)
+		*r = PlaybackKeyPair(*res.Properties)
 	}
 	if res.DependsOn != nil {
 		r.AWSCloudFormationDependsOn = res.DependsOn

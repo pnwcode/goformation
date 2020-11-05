@@ -21,7 +21,7 @@ type PackagingConfiguration_HlsEncryption struct {
 	// SpekeKeyProvider AWS CloudFormation Property
 	// Required: true
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-hlsencryption.html#cfn-mediapackage-packagingconfiguration-hlsencryption-spekekeyprovider
-	SpekeKeyProvider *PackagingConfiguration_ `json:"SpekeKeyProvider,omitempty"`
+	SpekeKeyProvider interface{} `json:"SpekeKeyProvider,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`

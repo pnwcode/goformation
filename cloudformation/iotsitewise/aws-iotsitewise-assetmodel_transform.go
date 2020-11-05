@@ -1,17 +1,22 @@
-package mediapackage
+package iotsitewise
 
 import (
 	"github.com/awslabs/goformation/v4/cloudformation/policies"
 )
 
-// PackagingConfiguration_MssEncryption AWS CloudFormation Resource (AWS::MediaPackage::PackagingConfiguration.MssEncryption)
-// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-mssencryption.html
-type PackagingConfiguration_MssEncryption struct {
+// AssetModel_Transform AWS CloudFormation Resource (AWS::IoTSiteWise::AssetModel.Transform)
+// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-transform.html
+type AssetModel_Transform struct {
 
-	// SpekeKeyProvider AWS CloudFormation Property
+	// Expression AWS CloudFormation Property
 	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-mssencryption.html#cfn-mediapackage-packagingconfiguration-mssencryption-spekekeyprovider
-	SpekeKeyProvider interface{} `json:"SpekeKeyProvider,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-transform.html#cfn-iotsitewise-assetmodel-transform-expression
+	Expression string `json:"Expression,omitempty"`
+
+	// Variables AWS CloudFormation Property
+	// Required: true
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-transform.html#cfn-iotsitewise-assetmodel-transform-variables
+	Variables []AssetModel_ExpressionVariable `json:"Variables,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
@@ -30,6 +35,6 @@ type PackagingConfiguration_MssEncryption struct {
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
-func (r *PackagingConfiguration_MssEncryption) AWSCloudFormationType() string {
-	return "AWS::MediaPackage::PackagingConfiguration.MssEncryption"
+func (r *AssetModel_Transform) AWSCloudFormationType() string {
+	return "AWS::IoTSiteWise::AssetModel.Transform"
 }

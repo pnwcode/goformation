@@ -1,4 +1,4 @@
-package cloudformation
+package iotsitewise
 
 import (
 	"bytes"
@@ -6,20 +6,37 @@ import (
 	"fmt"
 
 	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v4/cloudformation/tags"
 )
 
-// CustomResource AWS CloudFormation Resource (AWS::CloudFormation::CustomResource)
-// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html
-type CustomResource struct {
-	// Properties AWS CloudFormation Property
-	// Required: false
-	// See:
-	Properties interface{} `json:"Properties,omitempty"`
+// Asset AWS CloudFormation Resource (AWS::IoTSiteWise::Asset)
+// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-asset.html
+type Asset struct {
 
-	// ServiceToken AWS CloudFormation Property
+	// AssetHierarchies AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-asset.html#cfn-iotsitewise-asset-assethierarchies
+	AssetHierarchies []Asset_AssetHierarchy `json:"AssetHierarchies,omitempty"`
+
+	// AssetModelId AWS CloudFormation Property
 	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html#cfn-customresource-servicetoken
-	ServiceToken string `json:"ServiceToken,omitempty"`
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-asset.html#cfn-iotsitewise-asset-assetmodelid
+	AssetModelId string `json:"AssetModelId,omitempty"`
+
+	// AssetName AWS CloudFormation Property
+	// Required: true
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-asset.html#cfn-iotsitewise-asset-assetname
+	AssetName string `json:"AssetName,omitempty"`
+
+	// AssetProperties AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-asset.html#cfn-iotsitewise-asset-assetproperties
+	AssetProperties []Asset_AssetProperty `json:"AssetProperties,omitempty"`
+
+	// Tags AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-asset.html#cfn-iotsitewise-asset-tags
+	Tags []tags.Tag `json:"Tags,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
@@ -38,14 +55,14 @@ type CustomResource struct {
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
-func (r *CustomResource) AWSCloudFormationType() string {
-	return "AWS::CloudFormation::CustomResource"
+func (r *Asset) AWSCloudFormationType() string {
+	return "AWS::IoTSiteWise::Asset"
 }
 
 // MarshalJSON is a custom JSON marshalling hook that embeds this object into
 // an AWS CloudFormation JSON resource's 'Properties' field and adds a 'Type'.
-func (r CustomResource) MarshalJSON() ([]byte, error) {
-	type Properties CustomResource
+func (r Asset) MarshalJSON() ([]byte, error) {
+	type Properties Asset
 	return json.Marshal(&struct {
 		Type                string
 		Properties          Properties
@@ -67,8 +84,8 @@ func (r CustomResource) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON is a custom JSON unmarshalling hook that strips the outer
 // AWS CloudFormation resource object, and just keeps the 'Properties' field.
-func (r *CustomResource) UnmarshalJSON(b []byte) error {
-	type Properties CustomResource
+func (r *Asset) UnmarshalJSON(b []byte) error {
+	type Properties Asset
 	res := &struct {
 		Type                string
 		Properties          *Properties
@@ -89,7 +106,7 @@ func (r *CustomResource) UnmarshalJSON(b []byte) error {
 
 	// If the resource has no Properties set, it could be nil
 	if res.Properties != nil {
-		*r = CustomResource(*res.Properties)
+		*r = Asset(*res.Properties)
 	}
 	if res.DependsOn != nil {
 		r.AWSCloudFormationDependsOn = res.DependsOn

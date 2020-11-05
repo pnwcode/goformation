@@ -1,17 +1,17 @@
-package mediapackage
+package iotsitewise
 
 import (
 	"github.com/awslabs/goformation/v4/cloudformation/policies"
 )
 
-// PackagingConfiguration_MssEncryption AWS CloudFormation Resource (AWS::MediaPackage::PackagingConfiguration.MssEncryption)
-// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-mssencryption.html
-type PackagingConfiguration_MssEncryption struct {
+// AssetModel_Attribute AWS CloudFormation Resource (AWS::IoTSiteWise::AssetModel.Attribute)
+// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-attribute.html
+type AssetModel_Attribute struct {
 
-	// SpekeKeyProvider AWS CloudFormation Property
-	// Required: true
-	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-mssencryption.html#cfn-mediapackage-packagingconfiguration-mssencryption-spekekeyprovider
-	SpekeKeyProvider interface{} `json:"SpekeKeyProvider,omitempty"`
+	// DefaultValue AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-attribute.html#cfn-iotsitewise-assetmodel-attribute-defaultvalue
+	DefaultValue string `json:"DefaultValue,omitempty"`
 
 	// AWSCloudFormationDeletionPolicy represents a CloudFormation DeletionPolicy
 	AWSCloudFormationDeletionPolicy policies.DeletionPolicy `json:"-"`
@@ -30,6 +30,6 @@ type PackagingConfiguration_MssEncryption struct {
 }
 
 // AWSCloudFormationType returns the AWS CloudFormation resource type
-func (r *PackagingConfiguration_MssEncryption) AWSCloudFormationType() string {
-	return "AWS::MediaPackage::PackagingConfiguration.MssEncryption"
+func (r *AssetModel_Attribute) AWSCloudFormationType() string {
+	return "AWS::IoTSiteWise::AssetModel.Attribute"
 }
