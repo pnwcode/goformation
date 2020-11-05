@@ -36,7 +36,7 @@ type Repository struct {
 	// RepositoryPolicyText AWS CloudFormation Property
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-repositorypolicytext
-	RepositoryPolicyText string `json:"RepositoryPolicyText,omitempty"`
+	RepositoryPolicyText interface{} `json:"RepositoryPolicyText,omitempty"`
 
 	// Tags AWS CloudFormation Property
 	// Required: false
