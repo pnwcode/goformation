@@ -9,9 +9,12 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"reflect"
 	"sort"
 	"strings"
 	"text/template"
+
+	"github.com/imdario/mergo"
 )
 
 // ResourceGenerator takes AWS CloudFormation Resource Specification
@@ -156,11 +159,69 @@ func (rg *ResourceGenerator) downloadSpec(location string) ([]byte, error) {
 	return nil, fmt.Errorf("invalid URL scheme %s", uri.Scheme)
 }
 
+type unsetTransformer struct{}
+
+const unsetTransformerUnset = "{{UNSET}}"
+
+func (t unsetTransformer) Transformer(typ reflect.Type) func(dst, src reflect.Value) error {
+	if typ == reflect.TypeOf(string("")) {
+		return func(dst, src reflect.Value) error {
+			if src.String() == unsetTransformerUnset && dst.CanSet() {
+				dst.Set(reflect.ValueOf(""))
+			}
+			return nil
+		}
+	}
+	return nil
+}
+
+func (rg *ResourceGenerator) transformSpec(spec *CloudFormationResourceSpecification) error {
+	overrideResourceProperty := func(r, p string, override Property) {
+		resource, ok := spec.Resources[r]
+		if !ok {
+			return
+		}
+
+		property := resource.Properties[p]
+
+		mergo.Merge(&property, override, mergo.WithTransformers(unsetTransformer{}))
+
+		resource.Properties[p] = property
+		spec.Resources[r] = resource
+	}
+
+	overrideResourceProperty("AWS::KMS::Key", "KeyPolicy", Property{
+		PrimitiveType: "Json",
+	})
+
+	overrideResourceProperty("AWS::ECR::Repository", "RepositoryPolicyText", Property{
+		PrimitiveType: "String",
+	})
+
+	overrideResourceProperty("AWS::CloudFormation::CustomResource", "Properties", Property{
+		PrimitiveType: "Json",
+		Required:      false,
+		UpdateType:    "Immutable",
+	})
+
+	overrideResourceProperty("AWS::Route53::RecordSet", "ResourceRecords", Property{
+		PrimitiveType:     "Json",
+		PrimitiveItemType: unsetTransformerUnset,
+		Type:              unsetTransformerUnset,
+	})
+
+	return nil
+}
+
 func (rg *ResourceGenerator) processSpec(specname string, data []byte) (*CloudFormationResourceSpecification, error) {
 
 	// Unmarshall the JSON specification
 	spec := &CloudFormationResourceSpecification{}
 	if err := json.Unmarshal(data, spec); err != nil {
+		return nil, err
+	}
+
+	if err := rg.transformSpec(spec); err != nil {
 		return nil, err
 	}
 
