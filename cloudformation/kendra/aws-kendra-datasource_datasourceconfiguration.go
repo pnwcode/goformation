@@ -8,10 +8,20 @@ import (
 // See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-datasourceconfiguration.html
 type DataSource_DataSourceConfiguration struct {
 
+	// ConfluenceConfiguration AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-datasourceconfiguration.html#cfn-kendra-datasource-datasourceconfiguration-confluenceconfiguration
+	ConfluenceConfiguration *DataSource_ConfluenceConfiguration `json:"ConfluenceConfiguration,omitempty"`
+
 	// DatabaseConfiguration AWS CloudFormation Property
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-datasourceconfiguration.html#cfn-kendra-datasource-datasourceconfiguration-databaseconfiguration
 	DatabaseConfiguration *DataSource_DatabaseConfiguration `json:"DatabaseConfiguration,omitempty"`
+
+	// GoogleDriveConfiguration AWS CloudFormation Property
+	// Required: false
+	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-datasourceconfiguration.html#cfn-kendra-datasource-datasourceconfiguration-googledriveconfiguration
+	GoogleDriveConfiguration *DataSource_GoogleDriveConfiguration `json:"GoogleDriveConfiguration,omitempty"`
 
 	// OneDriveConfiguration AWS CloudFormation Property
 	// Required: false

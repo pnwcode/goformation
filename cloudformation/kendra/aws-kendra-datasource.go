@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	"github.com/awslabs/goformation/v4/cloudformation/policies"
+	"github.com/awslabs/goformation/v4/cloudformation/tags"
 )
 
 // DataSource AWS CloudFormation Resource (AWS::Kendra::DataSource)
@@ -13,7 +14,7 @@ import (
 type DataSource struct {
 
 	// DataSourceConfiguration AWS CloudFormation Property
-	// Required: true
+	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-datasource.html#cfn-kendra-datasource-datasourceconfiguration
 	DataSourceConfiguration *DataSource_DataSourceConfiguration `json:"DataSourceConfiguration,omitempty"`
 
@@ -33,7 +34,7 @@ type DataSource struct {
 	Name string `json:"Name,omitempty"`
 
 	// RoleArn AWS CloudFormation Property
-	// Required: true
+	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-datasource.html#cfn-kendra-datasource-rolearn
 	RoleArn string `json:"RoleArn,omitempty"`
 
@@ -45,7 +46,7 @@ type DataSource struct {
 	// Tags AWS CloudFormation Property
 	// Required: false
 	// See: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-datasource.html#cfn-kendra-datasource-tags
-	Tags *DataSource_TagList `json:"Tags,omitempty"`
+	Tags []tags.Tag `json:"Tags,omitempty"`
 
 	// Type AWS CloudFormation Property
 	// Required: true
